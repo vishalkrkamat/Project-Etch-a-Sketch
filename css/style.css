@@ -1,5 +1,7 @@
 /* Reset default browser styles */
-html, body {
+html{
+    position: relative;
+    min-height: 100%;
     margin: 0;
     padding: 0;
 }
@@ -9,12 +11,79 @@ h1{
     justify-content: center;
 }
 
-#first{
+main{
     /* Add styles for your sketch pad container */
     width: 100%;
-    height: 100vh;
+    height: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    background-color: #f0f0f0;
+}
+
+#grid {
+    background-color: grey;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Creates 3 equal-width columns */
+    grid-template-rows: repeat(4, 1fr); /* Creates 4 equal-height rows */
+    gap: 2px; /* Adds a 10px gap between grid items */
+  }
+  
+  .grid-item {
+    background-color: black;
+    border-color: aqua;
+    height: 100px;
+    width: 100px;
+    padding: 10px;
+  }
+#setting{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+  footer{
+    position: absolute;
+    bottom: 0;
+    left: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #f0f0f0;
+    gap: 10px;
+    width: 100%;
+    padding: 10px;
+    font-size: 20px
+  }
+  /* range slider css */
+
+  /* Remove default styles */
+.slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 10px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
 }
+
+/* Styling the slider track */
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #4CAF50;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: #4CAF50;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+  
