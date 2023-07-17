@@ -12,11 +12,15 @@
     </h1>
    <main>
     <div id="setting">
-        <li>etting 1</li>
-        <li>setting 2</li>
-        <li>setting 3</li>
-        <input type="range" class="slider">
-        <li>setting 3</li>
+        <input id="colorpicker">
+        <button>Color picker</button>
+        <button>Rainbow mode</button>
+        <button>Eraser</button>
+        <button>Clear</button>
+        <div class="slider-container">
+            <input type="range" id="myRange" min="1" max="64" step="1">
+            <div class="slider-value" id="rangeValue">1</div>
+          </div>
     </div>
     <div id="grid">
     </div>

@@ -4,6 +4,7 @@ html{
     min-height: 100%;
     margin: 0;
     padding: 0;
+    background-color: #A076F9
 }
 
 h1{
@@ -13,32 +14,30 @@ h1{
 
 main{
     /* Add styles for your sketch pad container */
+    padding-top: 100px;
     width: 100%;
     height: 100%;
     display: flex;
-    justify-content: space-evenly;
-    background-color: #f0f0f0;
+    justify-content: space-evenly;;
 }
 
 #grid {
-    background-color: grey;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;;
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Creates 3 equal-width columns */
-    grid-template-rows: repeat(4, 1fr); /* Creates 4 equal-height rows */
-    gap: 2px; /* Adds a 10px gap between grid items */
+    height: 500px;
+    width: 500px;
+    /* grid-template-rows: repeat(30,1fr);
+    grid-template-columns: repeat(30,1fr); */
   }
   
   .grid-item {
-    background-color: black;
-    border-color: aqua;
-    height: 100px;
-    width: 100px;
     padding: 10px;
   }
 #setting{
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    align-items: center;
 }
   footer{
     position: absolute;
@@ -68,21 +67,66 @@ main{
 }
 
 /* Styling the slider track */
-.slider::-webkit-slider-thumb {
+.slider-container {
+  position: relative;
+  width: 300px;
+}
+
+input[type="range"] {
+  width: 100%;
+  height: 10px;
+  background: linear-gradient(to right, purple, purple) no-repeat;
+  background-size: 0% 100%;
+  outline: none;
+  opacity: 0.7;
+  transition: background-size 0.3s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
   width: 20px;
   height: 20px;
-  background: #4CAF50;
-  cursor: pointer;
+  background-color: purple;
   border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.3s ease;
 }
 
-.slider::-moz-range-thumb {
-  width: 20px;
-  height: 20px;
-  background: #4CAF50;
-  cursor: pointer;
+.slider-value {
+  position: absolute;
+  top: -30px;
+  left: 0;
+  width: 30px;
+  height: 30px;
+  background-color: purple;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+input[type="range"]:hover::-webkit-slider-thumb {
+  transform: scale(1.2);
+}
+
+input[type="range"]:hover + .slider-value {
+  opacity: 1;
+}
+
+button{
+  padding: 20px 10px;
+  width: 100%;
+  border-radius: 15px;
+}
+
+#colorpicker{
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
 }
 
