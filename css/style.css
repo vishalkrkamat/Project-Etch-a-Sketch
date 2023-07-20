@@ -26,8 +26,6 @@ main{
     display: grid;
     height: 500px;
     width: 500px;
-    /* grid-template-rows: repeat(30,1fr);
-    grid-template-columns: repeat(30,1fr); */
   }
   
   .grid-item {
