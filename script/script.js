@@ -1,26 +1,49 @@
-//creating dynamic grid
-let container = document.querySelector('#grid');
+const container = document.querySelector('#grid');
+    const rangeInput = document.getElementById('myRange');
+    const rangeValueDisplay = document.getElementById('rangeValue');
+    const colorPickerInput = document.getElementById('colorpicker');
 
-const rangeInput = document.getElementById('myRange');
-const rangeValueDisplay = document.getElementById('rangeValue');
+    rangeInput.addEventListener('input', updateGrid);
 
-rangeInput.addEventListener('input', function() {
-  const selectedValue = rangeInput.value;
-  console.log(selectedValue)
-  rangeValueDisplay.textContent = selectedValue;
-  const rangePercent = (selectedValue - rangeInput.min) / (rangeInput.max - rangeInput.min) * 100;
-  rangeInput.style.backgroundSize = rangePercent + '% 100%';
-  creategrid(selectedValue); // Call creategrid() with the selectedValue as an argument
-});
+    rangeInput.addEventListener('mousemove', updateRangeValueDisplay);
 
-rangeInput.addEventListener('mousemove', function(e) {
-  const selectedValue = rangeInput.value;
-  rangeValueDisplay.textContent = selectedValue;
-  rangeValueDisplay.style.left = (-60+e.clientX) + 'px';
-});
-function creategrid(temv){
-  container.style.gridTemplateRows = `repeat(${temv}, 1fr)`; // Set the grid template rows
-  container.style.gridTemplateColumns = `repeat(${temv}, 1fr)` // Set the grid template columns
-}
+    function updateGrid() {
+      const selectedValue = rangeInput.value;
+      rangeValueDisplay.textContent = selectedValue;
+      const rangePercent = ((selectedValue - rangeInput.min) / (rangeInput.max - rangeInput.min)) * 100;
+      rangeInput.style.backgroundSize = rangePercent + '% 100%';
+      createGrid(selectedValue);
+    }
 
+    function updateRangeValueDisplay(e) {
+      const selectedValue = rangeInput.value;
+      rangeValueDisplay.textContent = selectedValue;
+      rangeValueDisplay.style.left = (-60 + e.clientX) + 'px';
+    }
 
+    function createGrid(size) {
+      container.innerHTML = '';
+      container.style.gridTemplateRows = `repeat(${size}, 1fr)`;
+      container.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+
+      for (let i = 0; i < size; i++) {
+        for (let j = 0; j < size; j++) {
+          const gridItem = document.createElement('div');
+          gridItem.classList.add('grid-item');
+          container.appendChild(gridItem);
+        }
+      }
+    }
+
+    function setBackgroundColorFromColorPicker() {
+      colorPickerInput.addEventListener('click', () => {
+        if (colorPickerInput.type === 'color') {
+          colorPickerInput.type = 'text';
+          colorPickerInput.click();
+          colorPickerInput.type = 'color';
+        }
+      });
+    }
+
+    setBackgroundColorFromColorPicker();
+    createGrid(5); // Initialize the grid with a default size
