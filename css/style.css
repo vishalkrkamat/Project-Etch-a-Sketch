@@ -28,9 +28,6 @@ main{
     width: 500px;
   }
   
-  .grid-item {
-    padding: 10px;
-  }
 #setting{
     display: flex;
     flex-direction: column;
