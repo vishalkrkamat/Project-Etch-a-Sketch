@@ -3,12 +3,15 @@ const container = document.querySelector('#grid');
 const rangeInput = document.getElementById('myRange');
 const rangeValueDisplay = document.getElementById('rangeValue');
 const colorPickerInput = document.getElementById('colorpicker');
-const resetButton = document.getElementById('resetButton');
+const resetButton = document.querySelector('#resetButton');
+const eraser = document.querySelector('#eraser');
+let eraserModeActive = false;
 
 rangeInput.addEventListener('input', updateGrid);
 
 rangeInput.addEventListener('mousemove', updateRangeValueDisplay);
 
+//selecting grid
 function updateGrid() {
   const selectedValue = rangeInput.value;
   rangeValueDisplay.textContent = selectedValue;
@@ -16,11 +19,11 @@ function updateGrid() {
   rangeInput.style.backgroundSize = rangePercent + '% 100%';
   createGrid(selectedValue);
 }
-
+// display value range
 function updateRangeValueDisplay(e) {
   const selectedValue = rangeInput.value;
   rangeValueDisplay.textContent = selectedValue;
-  rangeValueDisplay.style.left = (-60 + e.clientX) + 'px';
+  rangeValueDisplay.style.left = (-140 + e.clientX) + 'px';
 }
 
 function createGrid(size) {
@@ -40,10 +43,39 @@ function createGrid(size) {
   gridItems.forEach((item) => {
     item.addEventListener("mousedown", setRandomBackgroundColor);
   });
+  return gridItems
 }
 
-function resetPage() {
-  window.location.reload();
+eraser.addEventListener('click', toggleEraserMode)
+
+// Function to reset the background color of a grid item to null/transparent
+function resetGridItemBackground(event) {
+  const target = event.target;
+  if (target.classList.contains("grid-item")) {
+    target.style.backgroundColor = "";
+  }
+}
+
+// Function to enable/disable eraser mode
+function toggleEraserMode() {
+  eraserModeActive = !eraserModeActive;
+  if (eraserModeActive) {
+    console.log("Hello")
+    // Add click event listener to grid items when eraser mode is active
+    const gridItems = document.querySelectorAll('.grid-item');
+    gridItems.forEach((item) => {
+      item.removeEventListener("mousedown", setRandomBackgroundColor)
+      item.addEventListener("click", resetGridItemBackground);
+    });
+  } else {
+    console.log("Hello2")
+    // Remove click event listener from grid items when eraser mode is inactive
+    const gridItems = document.querySelectorAll('.grid-item');
+    gridItems.forEach((item) => {
+      item.removeEventListener("click", resetGridItemBackground);
+      item.addEventListener("mousedown", setRandomBackgroundColor);
+    });
+  }
 }
 
 //creating coloring function
@@ -55,6 +87,7 @@ function getRandomColor() {
   }
   return color;
 }
+
 //  Function to apply a random background color to the clicked element
 function setRandomBackgroundColor(event) {
   const target = event.target;
@@ -63,9 +96,8 @@ function setRandomBackgroundColor(event) {
     target.style.backgroundColor = randomColor;
   }
 }
-gridItems.forEach((item) => {
-  item.addEventListener("mousehover", setRandomBackgroundColor);
+resetButton.addEventListener('click',  () => {
+  location.reload();
 });
-resetButton.addEventListener('click', resetPage);
 
 createGrid(5); // Initialize the grid with a default size
