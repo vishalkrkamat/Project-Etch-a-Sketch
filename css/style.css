@@ -11,10 +11,12 @@ h1{
     display: flex;
     justify-content: center;
 }
-
+.eraser-cursor {
+  cursor: url("/css/image/eraser.svg"), auto;
+}
 main{
     /* Add styles for your sketch pad container */
-    padding-top: 100px;
+    padding-top: 40px;
     width: 100%;
     height: 100%;
     display: flex;
@@ -24,8 +26,8 @@ main{
 #grid {
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;;
     display: grid;
-    height: 500px;
-    width: 500px;
+    height: 700px;
+    width: 700px;
   }
   
 #setting{
@@ -34,6 +36,10 @@ main{
     justify-content: space-evenly;
     align-items: center;
 }
+.eraser-cursor {
+  cursor: url("/css/image/eraser.svg"), auto;
+}
+
   footer{
     position: absolute;
     bottom: 0;
@@ -43,7 +49,6 @@ main{
     justify-content: center;
     gap: 10px;
     width: 100%;
-    padding: 10px;
     font-size: 20px
   }
   /* range slider css */

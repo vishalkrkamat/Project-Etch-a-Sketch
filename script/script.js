@@ -4,6 +4,7 @@ const rangeInput = document.getElementById('myRange');
 const rangeValueDisplay = document.getElementById('rangeValue');
 const colorPickerInput = document.getElementById('colorpicker');
 const resetButton = document.querySelector('#resetButton');
+const body = document.body;
 const eraser = document.querySelector('#eraser');
 let eraserModeActive = false;
 
@@ -41,7 +42,7 @@ function createGrid(size) {
   // Adding event listeners to grid items after they are created
   const gridItems = document.querySelectorAll('.grid-item');
   gridItems.forEach((item) => {
-    item.addEventListener("mousedown", setRandomBackgroundColor);
+    item.addEventListener("mouseover", setRandomBackgroundColor);
   });
   return gridItems
 }
@@ -61,19 +62,21 @@ function toggleEraserMode() {
   eraserModeActive = !eraserModeActive;
   if (eraserModeActive) {
     console.log("Hello")
+    body.classList.add('eraser-cursor');
     // Add click event listener to grid items when eraser mode is active
     const gridItems = document.querySelectorAll('.grid-item');
     gridItems.forEach((item) => {
-      item.removeEventListener("mousedown", setRandomBackgroundColor)
-      item.addEventListener("click", resetGridItemBackground);
+      item.removeEventListener("mouseover", setRandomBackgroundColor)
+      item.addEventListener("mouseover", resetGridItemBackground);
     });
   } else {
     console.log("Hello2")
+    body.classList.remove('eraser-cursor');
     // Remove click event listener from grid items when eraser mode is inactive
     const gridItems = document.querySelectorAll('.grid-item');
     gridItems.forEach((item) => {
-      item.removeEventListener("click", resetGridItemBackground);
-      item.addEventListener("mousedown", setRandomBackgroundColor);
+      item.removeEventListener("mouseover", resetGridItemBackground);
+      item.addEventListener("mouseover", setRandomBackgroundColor);
     });
   }
 }
