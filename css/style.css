@@ -24,6 +24,7 @@ main{
 }
 
 #grid {
+  background-color: black;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;;
     display: grid;
     height: 700px;
