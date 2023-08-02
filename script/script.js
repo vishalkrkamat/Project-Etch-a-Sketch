@@ -8,12 +8,16 @@ const clear = document.querySelector('#clear')
 const randomcolor = document.querySelector('#randomcolor')
 const body = document.body;
 const eraser = document.querySelector('#eraser');
+
+// Flags
 let eraserModeActive = false;
 let ranclo = false;
 
+// Event listeners
 rangeInput.addEventListener('input', updateGrid);
-
 rangeInput.addEventListener('mousemove', updateRangeValueDisplay);
+randomcolor.addEventListener('click', rancolor)
+eraser.addEventListener('click', toggleEraserMode)
 
 //selecting grid
 function updateGrid() {
@@ -43,7 +47,6 @@ function createGrid(size) {
     }
   }
 }
-
 
 // Function to reset the background color of a grid item to null/transparent
 function resetGridItemBackground(event) {
@@ -92,10 +95,6 @@ function toggleEraserMode() {
     });
   }
 }
-
-randomcolor.addEventListener('click', rancolor)
-
-eraser.addEventListener('click', toggleEraserMode)
 
 clear.addEventListener('click', () => {
   const gridItems = document.querySelectorAll('.grid-item');
