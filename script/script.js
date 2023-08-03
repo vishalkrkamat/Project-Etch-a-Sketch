@@ -2,9 +2,9 @@
 const container = document.querySelector('#grid');
 const rangeInput = document.getElementById('myRange');
 const rangeValueDisplay = document.getElementById('rangeValue');
-const colorPickerInput = document.getElementById('colorpicker');
 const resetButton = document.querySelector('#resetButton');
 const clear = document.querySelector('#clear')
+const colorselect = document.querySelector("#colorselctor")
 const randomcolor = document.querySelector('#randomcolor')
 const body = document.body;
 const eraser = document.querySelector('#eraser');
@@ -12,12 +12,14 @@ const eraser = document.querySelector('#eraser');
 // Flags
 let eraserModeActive = false;
 let ranclo = false;
+let colorpick = false;
 
 // Event listeners
 rangeInput.addEventListener('input', updateGrid);
 rangeInput.addEventListener('mousemove', updateRangeValueDisplay);
 randomcolor.addEventListener('click', rancolor)
 eraser.addEventListener('click', toggleEraserMode)
+colorselect.addEventListener('click', setColor)
 
 //selecting grid
 function updateGrid() {
@@ -78,7 +80,6 @@ function toggleEraserMode() {
   eraserModeActive = !eraserModeActive;
   if (eraserModeActive) {
     body.classList.add('eraser-cursor');
-    console.log('Eraser enabled')
     // Add click event listener to grid items when eraser mode is active
     const gridItems = document.querySelectorAll('.grid-item');
     gridItems.forEach((item) => {
@@ -86,7 +87,6 @@ function toggleEraserMode() {
       item.addEventListener("mouseover", resetGridItemBackground);
     });
   } else {
-    console.log("Eraser disabled")
     body.classList.remove('eraser-cursor');
     // Remove click event listener from grid items when eraser mode is inactive
     const gridItems = document.querySelectorAll('.grid-item');
@@ -118,25 +118,35 @@ function getRandomColor() {
   return color;
 }
 
-const color = function getColor() {
-  // Get the color picker input element
+function setColor() {
+  colorpick = !colorpick;
+  if (colorpick) {
+    // Add event listeners to all grid items
+    const gridItems = document.querySelectorAll('.grid-item');
+    gridItems.forEach((item) => {
+      item.addEventListener("mouseover", selectColor);
+    });
+  } else {
+    // Remove event listeners from all grid items
+    const gridItems = document.querySelectorAll('.grid-item');
+    gridItems.forEach((item) => {
+      item.removeEventListener("mouseover", selectColor);
+    });
+  }
+}
+
+function selectColor(event) {
   const colorPicker = document.getElementById("colorpicker");
 
   // Get the selected color value
   const selectedColor = colorPicker.value;
-  console.log(selectedColor)
-  const gridItems = document.querySelectorAll('.grid-item');
-  gridItems.forEach((item) => {
-    item.addEventListener("mouseover", setRandomBackgroundCol)
-  });
-  function setRandomBackgroundCol(event) {
-    const target = event.target;
-    if (target.classList.contains("grid-item")) {
-      const randomColor = selectedColor;
-      target.style.backgroundColor = randomColor;
-    }
+
+  const target = event.target;
+  if (target.classList.contains("grid-item")) {
+    target.style.backgroundColor = selectedColor;
   }
 }
+
 //  Function to apply a random background color to the clicked element
 function setRandomBackgroundColor(event) {
   const target = event.target;
