@@ -1,60 +1,70 @@
 /* Reset default browser styles */
-html{
-    position: relative;
-    min-height: 100%;
-    margin: 0;
-    padding: 0;
-    background-color: #A076F9
+html {
+  position: relative;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #A076F9;
+  font-family: 'Roboto', sans-serif;
 }
 
-h1{
-    display: flex;
-    justify-content: center;
+h1 {
+  color: #8823ebe0;
+  margin: 20px 0px 0px 0px;
+  font-size: 80px;
+  display: flex;
+  justify-content: center;
 }
+
 .eraser-cursor {
   cursor: url("/css/image/eraser.svg"), auto;
 }
-main{
-    /* Add styles for your sketch pad container */
-    padding-top: 40px;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: space-evenly;;
+
+main {
+  /* Add styles for your sketch pad container */
+  padding-top: 40px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  ;
 }
 
 #grid {
   background-color: black;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;;
-    display: grid;
-    height: 700px;
-    width: 700px;
-  }
-  
-#setting{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  ;
+  display: grid;
+  height: 700px;
+  width: 700px;
 }
+
+#setting {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
 .eraser-cursor {
   cursor: url("/css/image/eraser.svg"), auto;
 }
 
-  footer{
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    width: 100%;
-    font-size: 20px
-  }
-  /* range slider css */
+footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  font-size: 20px
+}
 
-  /* Remove default styles */
+/* range slider css */
+
+/* Remove default styles */
 .slider {
   -webkit-appearance: none;
   appearance: none;
@@ -70,7 +80,7 @@ main{
 /* Styling the slider track */
 .slider-container {
   position: relative;
-  width: 300px;
+  width: 250px;
 }
 
 input[type="range"] {
@@ -95,12 +105,9 @@ input[type="range"]::-webkit-slider-thumb {
 }
 
 .slider-value {
-  position: absolute;
-  top: -30px;
-  left: 0;
   width: 30px;
   height: 30px;
-  background-color: rgb(49, 120, 202);
+  background-color: rgb(129, 83, 212);
   color: white;
   border-radius: 50%;
   display: flex;
@@ -115,11 +122,11 @@ input[type="range"]:hover::-webkit-slider-thumb {
   transform: scale(1.2);
 }
 
-input[type="range"]:hover + .slider-value {
+input[type="range"]:hover+.slider-value {
   opacity: 1;
 }
 
-button{
+button {
   background-color: initial;
   background-image: linear-gradient(#8614f8 0, #760be0 100%);
   border-radius: 5px;
@@ -156,8 +163,7 @@ button{
 }
 
 input[type='color'] {
-  -webkit-appearance: none;
-  background-color:#A076F9;
+  background-color: #A076F9;
   width: 100px;
   height: 100px;
   border: none;
@@ -168,5 +174,3 @@ input[type='color']::-webkit-color-swatch {
   border-radius: 50px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
-
-  
